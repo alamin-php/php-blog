@@ -1,14 +1,13 @@
 <?php include "inc/header.php"; ?>
-<?php include "inc/slider.php"; ?>
 <?php 
-	if(isset($_GET["category"])){
-		$id = $_GET["category"];
+	if(isset($_GET["search"])){
+		$search = $_GET["search"];
 	}
 ?>
 	<div class="contentsection contemplete clear">
 		<div class="maincontent clear">
 <?php 
-	$query = "SELECT * FROM tbl_post WHERE cat =$id ";
+	$query = "SELECT * FROM tbl_post WHERE title LIKE '%$search%' OR body LIKE '%$search%' ";
 	$result = $db->select($query);
 	if($result){
 		while($post = $result->fetch_assoc()){
