@@ -30,7 +30,7 @@
 		<?php
 		
 	}else{
-		header("Location:404.php");
+		echo "<p>No Post available in this category</p>";
 	} 
 	?>
 

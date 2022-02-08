@@ -75,6 +75,10 @@ h1 a {
   text-align: left;
 }
 
+/* message -------------- */
+.success{color:green; font-size: 18px;}
+.error{color:red; font-size: 18px;}
+
 .header-repeat{background:url(../img/header-repeat.jpg) repeat-x;}
 
 #branding a{color:#A1EAFF; font-weight:normal;}

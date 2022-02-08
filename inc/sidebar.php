@@ -3,7 +3,7 @@
         <h2>Categories</h2>
         <ul>
             <?php 
-                $query = "SELECT * FROM tbl_category";
+                $query = "SELECT * FROM tbl_category ORDER BY id DESC";
                 $category = $db->select($query);
                 if($category){
                     while($value = $category->fetch_assoc()){

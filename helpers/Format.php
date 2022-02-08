@@ -12,4 +12,11 @@
             // $text = $text.". . .";
             return $text;
         }
+
+        public function validation($data){
+            $data = trim($data);
+            $data = htmlspecialchars($data);
+            $data = stripslashes($data);
+            return $data;
+        }
     }
