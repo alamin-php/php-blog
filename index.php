@@ -1,6 +1,3 @@
-<?php include "config/config.php"; ?>
-<?php include "lib/Database.php"; ?>
-<?php include "helpers/Format.php"; ?>
 <?php include "inc/header.php"; ?>
 <?php include "inc/slider.php"; ?>
 
@@ -33,7 +30,7 @@
 					<?php echo $fm->shortenText($post['body'], 400); ?>
 				</p>
 				<div class="readmore clear">
-					<a href="post.php">Read More</a>
+					<a href="post.php?id=<?php echo $post['id']; ?>">Read More</a>
 				</div>
 			</div>
 		<?php }?>

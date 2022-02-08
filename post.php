@@ -1,16 +1,39 @@
 <?php include "inc/header.php"; ?>
+<?php 
+	$db = new Database();
+	$fm = new Format();
+?>
+
+<?php 
+	if(!isset($_GET["id"]) || $_GET["id"] == NULL){
+		header("Location: 404.php");
+	}else{
+		$id =  $_GET["id"];
+	}
+?>
 
 	<div class="contentsection contemplete clear">
 		<div class="maincontent clear">
 			<div class="about">
-				<h2>Our post title here</h2>
-				<h4>April 10, 2016, 12:30 PM, By Delowar</h4>
-				<img src="images/post2.png" alt="MyImage"/>
-				<p>Our psot..Some text will be go here. Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here. Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.</p>
-				
-				<p>About me..Some text will be go here. Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here. Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.</p>
+				<?php 
+					$query = "SELECT * FROM tbl_post WHERE id=$id";
+					$post = $db->select($query);
+					if($post){
+						while($result = $post->fetch_assoc()){
+							
+				?>
+				<h2><?php echo $result["title"]; ?></h2>
+				<h4><?php echo $fm->formatDate($result["date"]) ?>, By <?php echo $result["author"]; ?></h4>
+				<img src="admin/upload/<?php echo $result['image']; ?>" alt="MyImage"/>
+				<p><?php echo $result["body"]; ?></p>
 
-				<p>About me..Some text will be go here. Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here. Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.Some text will be go here.</p>
+				<?php } ?>
+
+				<?php }else{
+					header("Location: 404.php");
+				}
+
+				?>
 				
 				<div class="relatedpost clear">
 					<h2>Related articles</h2>
