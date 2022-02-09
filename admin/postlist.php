@@ -3,6 +3,19 @@
         <div class="grid_10">
             <div class="box round first grid">
                 <h2>Post List</h2>
+				<?php 
+					if(isset($_GET['delpost'])){
+						$id = $_GET['delpost'];
+
+						$query = "DELETE FROM tbl_post WHERE id='$id'";
+						$delpost = $db->delete($query);
+						if($delpost){
+							echo "<span class='success'>Post Deleted Successfully!</span>";
+						}else{
+							echo "<span class='error'>Post Not Delete!</span>";
+						}
+					}
+				?>
                 <div class="block">  
                     <table class="data display datatable" id="example">
 					<thead>
@@ -18,7 +31,10 @@
 					<tbody>
 						<?php
 							$i=0;
-							$query = "SELECT * FROM tbl_post ORDER BY id DESC";
+							$query = "SELECT tbl_post.*, tbl_category.name FROM tbl_post 
+							INNER JOIN tbl_category
+							ON tbl_post.cat = tbl_category.id
+							ORDER BY tbl_post.title DESC";
 							$posts = $db->select($query);
 							if($posts){
 								while($post = $posts->fetch_assoc()){
@@ -28,9 +44,9 @@
 							<td><?php echo $i; ?></td>
 							<td><?php echo $post["title"]; ?></td>
 							<td><?php echo $fm->shortenText($post["body"], 30); ?></td>
-							<td class="center"> <?php echo $post["cat"] ?></td>
-							<td class="center"> <?php echo $post["image"] ?></td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
+							<td class="center"> <?php echo $post["name"] ?></td>
+							<td class="center"> <img width="60px" height="40px" src="<?php echo $post["image"] ?>" alt="" srcset=""></td>
+							<td><a href="editpost.php?editpostid=<?php echo $post['id']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to delete?')" href="?delpost=<?php echo $post['id'] ?>">Delete</a></td>
 						</tr>
 						<?php } ?>
 						<?php } ?>

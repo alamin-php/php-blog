@@ -20,7 +20,7 @@
 				?>
 				<h2><?php echo $result["title"]; ?></h2>
 				<h4><?php echo $fm->formatDate($result["date"]) ?>, By <?php echo $result["author"]; ?></h4>
-				<img src="admin/upload/<?php echo $result['image']; ?>" alt="MyImage"/>
+				<img src="admin/<?php echo $result['image']; ?>" alt="MyImage"/>
 				<p><?php echo $result["body"]; ?></p>
 
 				<?php } ?>

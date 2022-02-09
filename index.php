@@ -20,10 +20,8 @@
 			<div class="samepost clear">
 				<h2><a href="post.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></h2>
 				<h4><?php echo $fm->formatDate($post['date']); ?>, By <a href="#"><?php echo $post['author']; ?></a></h4>
-				 <a href="#"><img src="admin/upload/<?php echo $post['image']; ?>" alt="post image"/></a>
-				<p>
+				 <a href="#"><img src="admin/<?php echo $post['image']; ?>" alt="post image"/></a>
 					<?php echo $fm->shortenText($post['body'], 400); ?>
-				</p>
 				<div class="readmore clear">
 					<a href="post.php?id=<?php echo $post['id']; ?>">Read More</a>
 				</div>
@@ -42,7 +40,7 @@
 			echo "<a href='index.php?page=$total_pages'>Last Page</a></span>";
 		
 	}else{
-		header("Location:404.php");
+		echo "<p>Post not Found!</p>";
 	} 
 	?>
 

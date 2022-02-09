@@ -28,7 +28,7 @@
         ?>
         <div class="popular clear">
             <h3><a href="post.php?id=<?php echo $result['id'] ?>"><?php echo $result["title"]; ?></a></h3>
-            <a href="#"><img src="admin/upload/<?php echo $result['image'] ?>" alt="<?php $result["title"]; ?>" /></a>
+            <a href="#"><img src="admin/<?php echo $result['image'] ?>" alt="<?php $result["title"]; ?>" /></a>
             <p><?php echo $fm->shortenText($result["body"], 80); ?></p>
         </div>
         <?php } ?>
