@@ -9,7 +9,7 @@
 
                         $title = $fm->validation($_POST["title"]);
                         $cat = $fm->validation($_POST["cat"]);
-                        $body = $fm->validation($_POST["body"]);
+                        $body = $_POST["body"];
                         $tags = $fm->validation($_POST["tags"]);
                         $author = $fm->validation($_POST["author"]);
     
@@ -31,6 +31,13 @@
     
                         if($title == "" || $cat == "" || $body == "" || $tags == "" || $author == ""){
                             echo "<span class='error'>Field must not be empty!</span>";
+                        }elseif(empty($file_name) || $file_name == ""){
+                            echo "<span class='error'>Image must not be empty!</span>";
+                        }elseif(in_array($file_ext, $permited) === false){
+                            echo "<span class='error'>You can upload only:-".implode(", ", $permited)."</span>";
+                        }
+                        elseif($file_size > 1048576){
+                            echo "<span class='error'>Image size should be less then 1 MB!</span>";  
                         }else{
                             move_uploaded_file($file_tmp_name, $uploaded_image);
                             $query = "INSERT INTO tbl_post (title, cat, body, tags, author, image) VALUES ('$title','$cat','$body','$tags','$author','$uploaded_image')";

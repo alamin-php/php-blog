@@ -1162,3 +1162,10 @@ td.details {
 }
 
 .gallery-sand .sorting{background-color:white !important;}
+
+.table-image{
+	height: 40px;
+	width: 60px;
+	vertical-align: middle;
+	margin-top: 5px;
+}

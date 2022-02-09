@@ -7,8 +7,19 @@
 					if(isset($_GET['delpost'])){
 						$id = $_GET['delpost'];
 
-						$query = "DELETE FROM tbl_post WHERE id='$id'";
-						$delpost = $db->delete($query);
+						$query1 = "SELECT image FROM tbl_post WHERE id='$id'";
+						$getImage = $db->select($query1);
+						if($getImage){
+							while($data = $getImage->fetch_assoc()){
+								$delImage = $data['image'];
+								if($delImage != NULL){
+									unlink($delImage);
+								}
+							}
+						}					
+						
+						$query2 = "DELETE FROM tbl_post WHERE id='$id'";
+						$delpost = $db->delete($query2);
 						if($delpost){
 							echo "<span class='success'>Post Deleted Successfully!</span>";
 						}else{
@@ -42,10 +53,10 @@
 						?>
 						<tr class="odd gradeX">
 							<td><?php echo $i; ?></td>
-							<td><?php echo $post["title"]; ?></td>
-							<td><?php echo $fm->shortenText($post["body"], 30); ?></td>
+							<td><a href="editpost.php?editpostid=<?php echo $post['id']; ?>"><?php echo $post["title"]; ?></a></td>
+							<td><?php echo $fm->shortenText($post["body"], 100); ?></td>
 							<td class="center"> <?php echo $post["name"] ?></td>
-							<td class="center"> <img width="60px" height="40px" src="<?php echo $post["image"] ?>" alt="" srcset=""></td>
+							<td class="center"> <img class="table-image" src="<?php echo $post["image"] ?>" alt="" srcset=""></td>
 							<td><a href="editpost.php?editpostid=<?php echo $post['id']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to delete?')" href="?delpost=<?php echo $post['id'] ?>">Delete</a></td>
 						</tr>
 						<?php } ?>

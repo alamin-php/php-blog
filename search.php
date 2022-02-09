@@ -16,7 +16,7 @@
 			<div class="samepost clear">
 				<h2><a href="post.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></h2>
 				<h4><?php echo $fm->formatDate($post['date']); ?>, By <a href="#"><?php echo $post['author']; ?></a></h4>
-				<img src="admin/<?php echo $result['image']; ?>" alt="MyImage"/>
+				<img src="admin/<?php echo $post['image']; ?>" alt="post image"/>
 
 					<?php echo $fm->shortenText($post['body'], 400); ?>
 
