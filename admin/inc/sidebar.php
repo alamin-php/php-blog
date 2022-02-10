@@ -24,10 +24,18 @@
                     </ul>
                 </li>
 
-                <li><a class="menuitem">Update Pages</a>
+                <li><a class="menuitem">Pages</a>
                     <ul class="submenu">
-                        <li><a>About Us</a></li>
-                        <li><a>Contact Us</a></li>
+                        <li><a href="addpage.php" style="font-weight: bold">Add Page</a></li>
+                        <?php 
+                            $query = "SELECT * FROM tbl_page ORDER BY name ASC";
+                            $pages = $db->select($query);
+                            if($pages){
+                                while($page =  $pages->fetch_assoc()){
+                        ?>
+                        <li><a href="editpage.php?pageid=<?php echo $page['id']; ?>"><?php echo $page["name"]; ?></a></li>
+                        <?php } ?>
+                        <?php } ?>
                     </ul>
                 </li>
                 <li><a class="menuitem">Category Option</a>

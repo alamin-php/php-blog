@@ -7,8 +7,8 @@
 					if(isset($_GET['delpost'])){
 						$id = $_GET['delpost'];
 
-						$query1 = "SELECT image FROM tbl_post WHERE id='$id'";
-						$getImage = $db->select($query1);
+						$query = "SELECT image FROM tbl_post WHERE id='$id'";
+						$getImage = $db->select($query);
 						if($getImage){
 							while($data = $getImage->fetch_assoc()){
 								$delImage = $data['image'];
@@ -17,14 +17,6 @@
 								}
 							}
 						}					
-						
-						$query2 = "DELETE FROM tbl_post WHERE id='$id'";
-						$delpost = $db->delete($query2);
-						if($delpost){
-							echo "<span class='success'>Post Deleted Successfully!</span>";
-						}else{
-							echo "<span class='error'>Post Not Delete!</span>";
-						}
 					}
 				?>
                 <div class="block">  
@@ -57,7 +49,7 @@
 							<td><?php echo $fm->shortenText($post["body"], 100); ?></td>
 							<td class="center"> <?php echo $post["name"] ?></td>
 							<td class="center"> <img class="table-image" src="<?php echo $post["image"] ?>" alt="" srcset=""></td>
-							<td><a href="editpost.php?editpostid=<?php echo $post['id']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to delete?')" href="?delpost=<?php echo $post['id'] ?>">Delete</a></td>
+							<td><a href="editpost.php?editpostid=<?php echo $post['id']; ?>">Edit</a> || <a onclick="return confirm('Are you sure to delete?')" href="deletepost.php?delpost=<?php echo $post['id'] ?>">Delete</a></td>
 						</tr>
 						<?php } ?>
 						<?php } ?>
