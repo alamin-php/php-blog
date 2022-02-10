@@ -12,6 +12,12 @@
                         $linkedin = $_POST["linkedin"];
                         $google = $_POST["googleplus"];
 
+                        $facebook = mysqli_real_escape_string($db->link, $facebook);
+                        $twitter = mysqli_real_escape_string($db->link, $twitter);
+                        $linkedin = mysqli_real_escape_string($db->link, $linkedin);
+                        $google = mysqli_real_escape_string($db->link, $google);
+
+
                         if($facebook == "" || $twitter == "" || $linkedin == "" ||$facebook == "" ){
                             echo "<span class='error'>Field must not be empty !</span>";
                         }else{

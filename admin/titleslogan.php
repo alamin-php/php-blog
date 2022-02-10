@@ -10,6 +10,9 @@
                             $title = $fm->validation($_POST['title']);
                             $slogan = $fm->validation($_POST['slogan']);
 
+                            $title = mysqli_real_escape_string($db->link, $title);
+                            $slogan = mysqli_real_escape_string($db->link, $slogan);
+
                             $permited = array('jpg', 'jpeg', 'png');
                             $file_name = $_FILES['logo']['name'];
                             $file_size = $_FILES['logo']['size'];
