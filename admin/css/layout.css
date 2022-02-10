@@ -346,6 +346,13 @@ table.form input[type="submit"] {
   font-size: 20px;
   padding: 2px 10px;
 }
+table a.btn-back {
+    border: 1px solid #ddd;
+    color: #444;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 3px 10px;
+}
 input.mini{width: 30%;	}
 
 input.medium

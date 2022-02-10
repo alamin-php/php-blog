@@ -45,11 +45,20 @@ $(window).load(function() {
 <body>
 	<div class="headersection templete clear">
 		<a href="#">
+			<?php 
+				$query = "SELECT * FROM tbl_slogan WHERE id='1'";
+				$result_row = $db->select($query);
+				if($result_row){
+					while($value = $result_row->fetch_assoc()){
+					
+			?>
 			<div class="logo">
-				<img src="images/logo.png" alt="Logo"/>
-				<h2>Website Title</h2>
-				<p>Our website description</p>
+				<img src="admin/<?php echo $value['logo']; ?>" alt="Logo"/>
+				<h2><?php echo $value['title']; ?></h2>
+				<p><?php echo $value['slogan']; ?></p>
 			</div>
+			<?php } ?>
+			<?php } ?>
 		</a>
 		<div class="social clear">
 			<div class="icon clear">

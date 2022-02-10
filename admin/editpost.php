@@ -175,6 +175,7 @@
                         <td></td>
                         <td>
                             <input type="submit" name="update" Value="Update" />
+                            <a class="btn-back" href="postlist.php">Back</a>
                         </td>
                     </tr>
                 </table>
