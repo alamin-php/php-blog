@@ -21,7 +21,7 @@
     <div class="samesidebar clear">
         <h2>Latest articles</h2>
         <?php 
-            $query = "SELECT * FROM tbl_post ORDER BY id LIMIT 3 ";
+            $query = "SELECT * FROM tbl_post ORDER BY id LIMIT 5 ";
             $post = $db->select($query);
             if($post){
                 while($result = $post->fetch_assoc()){
