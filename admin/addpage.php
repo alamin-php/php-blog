@@ -12,10 +12,16 @@
     
                         $name = mysqli_real_escape_string($db->link, $name);
                         $body = mysqli_real_escape_string($db->link, $body);
+
+                        $namequary = "SELECT * FROM tbl_page WHERE name = '$name' LIMIT 1";
+                        $namecheck = $db->select($namequary);
     
                         if($name == "" || $body == ""){
                             echo "<span class='error'>Field must not be empty!</span>";
-                        }else{
+                        }elseif($namecheck !=false){
+                            echo "<span class='error'>Page name Already Exist!</span>";
+                        }
+                        else{
                             $query = "INSERT INTO tbl_page (name, body) VALUES ('$name','$body')";
                             $insert_page = $db->insert($query);
                             if($insert_page){
