@@ -23,23 +23,34 @@
 				<img src="admin/<?php echo $result['image']; ?>" alt="MyImage"/>
 				<p><?php echo $result["body"]; ?></p>
 
-				<?php } ?>
 
-				<?php }else{
-					header("Location: 404.php");
-				}
-
-				?>
 				
 				<div class="relatedpost clear">
 					<h2>Related articles</h2>
-					<a href="#"><img src="images/post1.jpg" alt="post image"/></a>
-					<a href="#"><img src="images/post1.jpg" alt="post image"/></a>
-					<a href="#"><img src="images/post1.jpg" alt="post image"/></a>
-					<a href="#"><img src="images/post1.jpg" alt="post image"/></a>
-					<a href="#"><img src="images/post1.jpg" alt="post image"/></a>
-					<a href="#"><img src="images/post1.jpg" alt="post image"/></a>
+<?php 
+	$catid = $result['cat'];
+	$relatedQuery = "SELECT * FROM tbl_post WHERE cat = '$catid' ORDER BY rand() LIMIT 6";
+	$relatedPost = $db->select($relatedQuery);
+	if($relatedPost){
+		while($rresult = $relatedPost->fetch_assoc()){?>
+		
+		<a href="post.php?id=<?php echo $rresult['id'];  ?>"><img src="admin/<?php echo $rresult['image'] ?>" alt="post image"/></a>
+		
+		<?php
+
+		}
+	}
+?>
+
 				</div>
+
+				<?php } ?>
+
+				<?php }else{
+				header("Location: 404.php");
+				}
+
+				?>
 	</div>
 
 		</div>
