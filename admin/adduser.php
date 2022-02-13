@@ -10,6 +10,7 @@
                        $username  = $fm->validation($_POST['username']);
                        $password  = md5($_POST['password']);
                        $role      = $_POST['role'];
+                       $username  = strtolower($username);
 
                        $usernameQuery = "SELECT * FROM tbl_user WHERE username = '$username'";
                        $userCheck = $db->select($usernameQuery);

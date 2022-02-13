@@ -41,7 +41,7 @@
 							<td><?php echo $i; ?></td>
 							<td><a href="viewmsg.php?msgid=<?php echo $result['id']; ?>"><?php echo $result['fname']; ?> <?php echo $result['lname']; ?></a></td>
 							<td><?php echo $result['email']; ?></td>
-							<td><?php echo $result['message']; ?></td>
+							<td><?php echo $fm->shortenText($result["message"], 50); ?></td>
 							<td><?php echo $fm->formatDate($result['date']); ?></td>
 							<td><a href="viewmsg.php?msgid=<?php echo $result['id']; ?>">View</a> || 
 								<a href="replaymsg.php?msgid=<?php echo $result['id']; ?>">Replay</a> || 
@@ -92,7 +92,7 @@
 							<td><?php echo $i; ?></td>
 							<td><?php echo $result['fname']; ?> <?php echo $result['lname']; ?></td>
 							<td><?php echo $result['email']; ?></td>
-							<td><?php echo $result['message']; ?></td>
+							<td><?php echo $fm->shortenText($result["message"], 50); ?></td>
 							<td><?php echo $fm->formatDate($result['date']); ?></td>
 							<td><a onclick="return confirm('Are you sure to delete?')" href="?delid=<?php echo $result['id']; ?>">Delete</a></td>
 						</tr>
