@@ -17,9 +17,20 @@
                         $name = mysqli_real_escape_string($db->link, $name);
                         $email = mysqli_real_escape_string($db->link, $email);
                         $details = mysqli_real_escape_string($db->link, $details);
+
+                        $mailquery = "SELECT * FROM tbl_user WHERE email = '$email' LIMIT 1";
+                        $mailCheck = $db->select($mailquery);
     
                         if($name == "" || $email == "" || $details == ""){
                             echo "<span class='error'>Field must not be empty!</span>";
+                        }elseif($mailCheck != false){
+                            $query = "UPDATE tbl_user SET name = '$name',details = '$details' WHERE id = '$userid'";
+                            $update_row = $db->update($query);
+                            if($update_row){
+                                echo "<span class='success'>Profile Updated Successfully!</span>";
+                            }else{
+                                echo "<span class='error'>Profile Not update!</span>";
+                            }
                         }else{
                             $query = "UPDATE tbl_user SET name = '$name',email = '$email',details = '$details' WHERE id = '$userid'";
                             $update_row = $db->update($query);

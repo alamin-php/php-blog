@@ -14,21 +14,27 @@
                    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])){
                        $username  = $fm->validation($_POST['username']);
                        $password  = md5($_POST['password']);
+                       $email      = $_POST['email'];
                        $role      = $_POST['role'];
                        $username  = strtolower($username);
 
                        $usernameQuery = "SELECT * FROM tbl_user WHERE username = '$username'";
                        $userCheck = $db->select($usernameQuery);
 
-                       if($username == "" || $password == "" || $role == ""){
+                       $emailQuery = "SELECT * FROM tbl_user WHERE email = '$email'";
+                       $emailCheck = $db->select($emailQuery);
+
+                       if($username == "" || $password == "" || $role == "" || $email == ""){
                            echo "<span class='error'>Field must not be empty!</span>";
                         }elseif($userCheck != false){
                             echo "<span class='error'>Username Already Exist!</span>";
+                        }elseif($emailCheck != false){
+                            echo "<span class='error'>Email Already Exist!</span>";
                         }else{
                             $username = mysqli_real_escape_string($db->link, $username);
                             $password = mysqli_real_escape_string($db->link, $password);
                             $role = mysqli_real_escape_string($db->link, $role);
-                            $query = "INSERT INTO tbl_user (username,password,role) VALUES('$username', '$password','$role')";
+                            $query = "INSERT INTO tbl_user (username,password,role,email) VALUES('$username', '$password','$role','$email')";
                             $catinsert = $db->insert($query);
                             if($catinsert){
                                 echo "<span class='success'>User Created Successfully!</span>";
@@ -52,6 +58,14 @@
                             </td>
                             <td>
                                 <input type="text" name="password" placeholder="Enter Password..." class="medium" />
+                            </td>
+                        </tr>				
+                        <tr>
+                            <td>
+                                <label>Email</label>
+                            </td>
+                            <td>
+                                <input type="text" name="email" placeholder="Enter Email address..." class="medium" />
                             </td>
                         </tr>				
                         <tr>
