@@ -28,6 +28,14 @@
                $title = 'home';
            }elseif($title == 'contact'){
                $title = 'contact';
+           }elseif($title == 'catlist'){
+               $title = 'category list';
+           }elseif($title == 'titleslogan'){
+               $title = 'Slogan';
+           }elseif($title == 'addcat'){
+               $title = 'add category';
+           }elseif($title == 'addpost'){
+               $title = 'add post';
            }
            return $title = ucfirst($title);
         }

@@ -54,8 +54,12 @@
                                     }
                                 ?>
                             </td>
-							<td><a href="viewuser.php?userid=<?php echo $result['id']; ?>">View</a> ||
-                             <a onclick="return confirm('Are you sure to delete');" href="?deluser=<?php echo $result['id']; ?>">Delete</a></td>
+							<td><a href="viewuser.php?userid=<?php echo $result['id']; ?>">View</a>
+							<?php if(Session::get("userRole") == '0') : ?>
+							||
+                             <a onclick="return confirm('Are you sure to delete');" href="?deluser=<?php echo $result['id']; ?>">Delete</a>
+							 <?php endif; ?>
+							</td>
 						</tr>
 						<?php } ?>
 						<?php }else{

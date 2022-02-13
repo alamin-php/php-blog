@@ -51,6 +51,23 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>
+                                <label>Role</label>
+                            </td>
+                            <td>
+                                <input type="text" name="role" readonly value="<?php 
+                                    if($result["role"] == 0){
+                                        echo "Admin";
+                                    }elseif($result["role"] == 1){
+                                        echo "Author";
+                                    }elseif($result["role"] == 2){
+                                        echo "Editor";
+                                    }
+                                ?>" class="medium" />
+                            </td>
+                        </tr>
+
+                        <tr>
                             <td style="vertical-align: top; padding-top: 9px;">
                                 <label>Details</label>
                             </td>

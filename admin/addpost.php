@@ -12,12 +12,14 @@
                         $body = $_POST["body"];
                         $tags = $fm->validation($_POST["tags"]);
                         $author = $fm->validation($_POST["author"]);
+                        $userid = $_POST["userid"];
     
                         $title = mysqli_real_escape_string($db->link, $title);
                         $cat = mysqli_real_escape_string($db->link, $cat);
                         $body = mysqli_real_escape_string($db->link, $body);
                         $tags = mysqli_real_escape_string($db->link, $tags);
                         $author = mysqli_real_escape_string($db->link, $author);
+                        $userid = mysqli_real_escape_string($db->link, $userid);
     
                         $permited = array("jpg", "jpeg", "png");
                         $file_name = $_FILES["image"]["name"];
@@ -40,7 +42,7 @@
                             echo "<span class='error'>Image size should be less then 1 MB!</span>";  
                         }else{
                             move_uploaded_file($file_tmp_name, $uploaded_image);
-                            $query = "INSERT INTO tbl_post (title, cat, body, tags, author, image) VALUES ('$title','$cat','$body','$tags','$author','$uploaded_image')";
+                            $query = "INSERT INTO tbl_post (title, cat, body, tags, author, image, userid) VALUES ('$title','$cat','$body','$tags','$author','$uploaded_image', '$userid')";
                             $postinset = $db->insert($query);
                             if($postinset){
                                 echo "<span class='success'>Post Inserted Successfully!</span>";
@@ -112,7 +114,8 @@
                                 <label>Author</label>
                             </td>
                             <td>
-                                <input type="text" name="author" placeholder="Enter Post Author..." class="medium" />
+                                <input type="text" name="author" value="<?php echo Session::get('username'); ?>" class="medium" />
+                                <input type="hidden" name="userid" value="<?php echo Session::get('userId'); ?>" class="medium" />
                             </td>
                         </tr>
 						<tr>

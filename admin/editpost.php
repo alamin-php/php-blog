@@ -16,12 +16,14 @@
                 $body = $_POST["body"];
                 $tags = $fm->validation($_POST["tags"]);
                 $author = $fm->validation($_POST["author"]);
+                $userid = $_POST["userid"];
 
                 $title = mysqli_real_escape_string($db->link, $title);
                 $cat = mysqli_real_escape_string($db->link, $cat);
                 $body = mysqli_real_escape_string($db->link, $body);
                 $tags = mysqli_real_escape_string($db->link, $tags);
                 $author = mysqli_real_escape_string($db->link, $author);
+                $userid = mysqli_real_escape_string($db->link, $userid);
 
                 $permited = array("jpg", "jpeg", "png");
                 $file_name = $_FILES["image"]["name"];
@@ -60,7 +62,8 @@
                                 body='$body',
                                 image='$uploaded_image',
                                 tags='$tags',
-                                author='$author'
+                                author='$author',
+                                userid='$userid'
                                 WHERE id='$id'
                         ";
                         $update_rows = $db->update($query);
@@ -76,7 +79,8 @@
                                 cat='$cat',
                                 body='$body',
                                 tags='$tags',
-                                author='$author'
+                                author='$author',
+                                userid='$userid'
                                 WHERE id='$id'
                         ";
                         $update_rows = $db->update($query);
@@ -169,6 +173,7 @@
                         </td>
                         <td>
                             <input type="text" name="author" value="<?php echo $result['author']; ?>" class="medium" />
+                            <input type="hidden" name="userid" value="<?php echo Session::get('userId'); ?>" class="medium" />
                         </td>
                     </tr>
                     <tr>

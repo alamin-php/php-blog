@@ -24,7 +24,7 @@
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title> Admin</title>
+    <title><?php echo $fm->title(); ?> - <?php echo TITLE; ?></title>
     <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/text.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/grid.css" media="screen" />
@@ -107,7 +107,9 @@
                     ?>
                 </span></a></li>
                 <li class="ic-charts"><a href="../index.php" target="__blank"><span>Visit Website</span></a></li>
+                <?php if(Session::get("userRole") == '0') : ?>
                 <li class="ic-charts"><a href="adduser.php"><span>Add User</span></a></li>
+                <?php endif; ?>
                 <li class="ic-charts"><a href="userlist.php"><span>User List</span></a></li>
             </ul>
         </div>
