@@ -25,11 +25,30 @@
 			<title><?php echo $fm->title(); ?> - <?php echo TITLE; ?></title>
 			<?php
 		}
-	?>
+	?>	
 	<meta name="language" content="English">
 	<meta name="description" content="It is a website about education">
-	<meta name="keywords" content="blog,cms blog">
-	<meta name="author" content="Delowar">
+	<!-- FOR META KEYWORDS  -->
+	<?php 
+		if(isset($_GET["id"])){
+			$id = $_GET["id"];
+			$query = "SELECT * FROM tbl_post WHERE id='$id'";
+			$keywords = $db->select($query);
+			if($keywords){
+				while($keyword = $keywords->fetch_assoc()){
+					?>
+					<meta name="keywords" content="<?php echo $keyword['tags']; ?>">
+					<meta name="author" content="<?php echo $keyword['author']; ?>">
+					<?php
+				}
+			}
+		}else{
+			?>
+			<meta name="keywords" content="<?php echo KEYWORD; ?>">
+			<meta name="author" content="<?php echo AUTHOR; ?>">
+			<?php
+		}
+	?>
 	<link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.css">	
 	<link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="style.css">
